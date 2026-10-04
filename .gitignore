@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.venv*/
+.env*
+.ipynb_checkpoints/
+outputs/
+private/
+test-runs/
+*.log
+kernel*.json
+*.pdf
+*.xlsx
+*.zip
+*.png

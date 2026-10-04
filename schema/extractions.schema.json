@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:codeml:l2c:extractions:v1",
+  "title": "L2C extraction array - documented implementation contract",
+  "description": "The sponsor supplies an example record, not a formal JSON Schema. Source/type enums, nullable absent reinforcement attributes and a top-level array are implementation conventions. No drawing values are contained here.",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/record"
+  },
+  "$defs": {
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "source",
+        "fichier",
+        "feuillet",
+        "page",
+        "x",
+        "y",
+        "type_element",
+        "element",
+        "armature"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "enum": [
+            "plan",
+            "atelier"
+          ]
+        },
+        "fichier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feuillet": {
+          "type": "string",
+          "minLength": 1
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "x": {
+          "type": "number",
+          "minimum": 0
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0
+        },
+        "type_element": {
+          "enum": [
+            "fondation",
+            "poutre",
+            "mur_refend",
+            "colonne",
+            "dalle"
+          ]
+        },
+        "element": {
+          "type": "string",
+          "minLength": 1
+        },
+        "armature": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/reinforcement"
+          }
+        }
+      }
+    },
+    "reinforcement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repere",
+        "diametre",
+        "quantite",
+        "espacement_mm",
+        "longueur_mm"
+      ],
+      "properties": {
+        "repere": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "diametre": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantite": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "espacement_mm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "longueur_mm": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
